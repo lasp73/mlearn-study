@@ -1,4 +1,4 @@
-## Machine Learning Operations (MLOps) - Estudo
+## Estudo MLOps
 
 Essas são as minhas notas de estudo e exemplos de código relacionados a Machine Learning Operations (MLOps).
 
