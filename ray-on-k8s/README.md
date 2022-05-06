@@ -13,8 +13,6 @@ primeiro no host e carregá-la pelo kind através do comando `kind load docker-i
 
 ```bash
 
-cd ray-k8s
-
 kind create cluster --config kind-cluster.yaml
 
 docker pull rayproject/ray:1.11.0-py38-cpu
