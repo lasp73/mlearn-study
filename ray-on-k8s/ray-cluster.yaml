@@ -1,5 +1,7 @@
+# This file was based on [example-full.yaml](https://github.com/ray-project/ray/blob/ea6c2d634b07b92544f1c3a8e0feb17fe32772ee/python/ray/autoscaler/kubernetes/example-full.yaml)
+
 # A unique identifier for the head node and workers of this cluster.
-cluster_name: study-cluster
+cluster_name: study
 
 # The maximum number of workers nodes to launch in addition to the head
 # node.
@@ -74,11 +76,11 @@ provider:
             # NOTE: If you're running multiple Ray clusters with services
             # on one Kubernetes cluster, they must have unique service
             # names.
-            name: study-cluster-ray-head
+            name: study-ray-head
         spec:
             # This selector must match the head node pod's selector below.
             selector:
-                component: study-cluster-ray-head
+                component: study-ray-head
             ports:
                 - name: client
                   protocol: TCP
@@ -110,7 +112,7 @@ available_node_types:
       kind: Pod
       metadata:
         # Automatically generates a name for the pod with this prefix.
-        generateName: study-cluster-ray-worker-
+        generateName: study-ray-worker-
       spec:
         restartPolicy: Never
         volumes:
@@ -148,11 +150,11 @@ available_node_types:
       kind: Pod
       metadata:
         # Automatically generates a name for the pod with this prefix.
-        generateName: study-cluster-ray-head-
+        generateName: study-ray-head-
         # Must match the head node service selector above if a head node
         # service is required.
         labels:
-            component: study-cluster-ray-head
+            component: study-ray-head
       spec:
         # Change this if you altered the autoscaler_service_account above
         # or want to provide your own.

@@ -104,7 +104,7 @@ Traceback (most recent call last):
     ray_constants.OBJECT_STORE_MINIMUM_MEMORY_BYTES))
 ValueError: Attempting to cap object store memory usage at 65523302 bytes, but the minimum allowed is 78643200 bytes.
 
-Setup command `kubectl -n ray exec -it study-cluster-ray-head-kfr49 -- bash --login -c -i 'true && source ~/.bashrc && export OMP_NUM_THREADS=1 PYTHONWARNINGS=ignore && (export RAY_OVERRIDE_RESOURCES='"'"'{"CPU":1,"GPU":0,"memory":375809638}'"'"';ulimit -n 65536; ray start --head --port=6379 --autoscaling-config=~/ray_bootstrap_config.yaml --dashboard-host 0.0.0.0)'` failed with exit code 1. stderr:
+Setup command `kubectl -n ray exec -it study-ray-head-kfr49 -- bash --login -c -i 'true && source ~/.bashrc && export OMP_NUM_THREADS=1 PYTHONWARNINGS=ignore && (export RAY_OVERRIDE_RESOURCES='"'"'{"CPU":1,"GPU":0,"memory":375809638}'"'"';ulimit -n 65536; ray start --head --port=6379 --autoscaling-config=~/ray_bootstrap_config.yaml --dashboard-host 0.0.0.0)'` failed with exit code 1. stderr:
 ```
 
 O resultado obtido deve ser algo assim:
@@ -112,14 +112,14 @@ O resultado obtido deve ser algo assim:
 ```bash
 $ ray up -y --no-config-cache ray-cluster.yaml
 
-Cluster: study-cluster
+Cluster: study
 
 2022-05-06 18:54:07,343	INFO util.py:278 -- setting max workers for head node type to 0
 Checking Kubernetes environment settings
 2022-05-06 18:54:07,756	INFO config.py:224 -- KubernetesNodeProvider: namespace 'ray' not found, attempting to create it
 2022-05-06 18:54:07,777	INFO config.py:228 -- KubernetesNodeProvider: successfully created namespace 'ray'
-2022-05-06 18:54:07,904	INFO config.py:345 -- KubernetesNodeProvider: service 'study-cluster-ray-head' not found, attempting to create it
-2022-05-06 18:54:08,296	INFO config.py:347 -- KubernetesNodeProvider: successfully created service 'study-cluster-ray-head'
+2022-05-06 18:54:07,904	INFO config.py:345 -- KubernetesNodeProvider: service 'study-ray-head' not found, attempting to create it
+2022-05-06 18:54:08,296	INFO config.py:347 -- KubernetesNodeProvider: successfully created service 'study-ray-head'
 2022-05-06 18:54:08,602	INFO config.py:253 -- KubernetesNodeProvider: autoscaler_service_account 'autoscaler' not found, attempting to create it
 2022-05-06 18:54:08,869	INFO config.py:255 -- KubernetesNodeProvider: successfully created autoscaler_service_account 'autoscaler'
 2022-05-06 18:54:08,960	INFO config.py:279 -- KubernetesNodeProvider: autoscaler_role 'autoscaler' not found, attempting to create it
@@ -139,25 +139,25 @@ Acquiring an up-to-date head node
   New status: waiting-for-ssh
   [1/7] Waiting for SSH to become available
     Running `uptime` as a test.
-2022-05-06 18:54:10,261	INFO command_runner.py:172 -- NodeUpdater: study-cluster-ray-head-bzqf5: Running kubectl -n ray exec -it study-cluster-ray-head-bzqf5 -- bash --login -c -i 'true && source ~/.bashrc && export OMP_NUM_THREADS=1 PYTHONWARNINGS=ignore && (uptime)'
+2022-05-06 18:54:10,261	INFO command_runner.py:172 -- NodeUpdater: study-ray-head-bzqf5: Running kubectl -n ray exec -it study-ray-head-bzqf5 -- bash --login -c -i 'true && source ~/.bashrc && export OMP_NUM_THREADS=1 PYTHONWARNINGS=ignore && (uptime)'
 error: unable to upgrade connection: container not found ("ray-node")
-    SSH still not available (Exit Status 1): kubectl -n ray exec -it study-cluster-ray-head-bzqf5 -- bash --login -c -i 'true && source ~/.bashrc && export OMP_NUM_THREADS=1 PYTHONWARNINGS=ignore && (uptime)', retrying in 5 seconds.
-2022-05-06 18:54:41,753	INFO command_runner.py:172 -- NodeUpdater: study-cluster-ray-head-bzqf5: Running kubectl -n ray exec -it study-cluster-ray-head-bzqf5 -- bash --login -c -i 'true && source ~/.bashrc && export OMP_NUM_THREADS=1 PYTHONWARNINGS=ignore && (uptime)'
+    SSH still not available (Exit Status 1): kubectl -n ray exec -it study-ray-head-bzqf5 -- bash --login -c -i 'true && source ~/.bashrc && export OMP_NUM_THREADS=1 PYTHONWARNINGS=ignore && (uptime)', retrying in 5 seconds.
+2022-05-06 18:54:41,753	INFO command_runner.py:172 -- NodeUpdater: study-ray-head-bzqf5: Running kubectl -n ray exec -it study-ray-head-bzqf5 -- bash --login -c -i 'true && source ~/.bashrc && export OMP_NUM_THREADS=1 PYTHONWARNINGS=ignore && (uptime)'
  14:54:42 up  9:49,  0 users,  load average: 1.49, 1.35, 1.17
     Success.
   Updating cluster configuration. [hash=28ac53f5ada8823e34b95820979c3c29566381da]
   New status: syncing-files
   [2/7] Processing file mounts
-2022-05-06 18:54:42,824	INFO command_runner.py:172 -- NodeUpdater: study-cluster-ray-head-bzqf5: Running kubectl -n ray exec -it study-cluster-ray-head-bzqf5 -- bash --login -c -i 'true && source ~/.bashrc && export OMP_NUM_THREADS=1 PYTHONWARNINGS=ignore && (mkdir -p ~)'
+2022-05-06 18:54:42,824	INFO command_runner.py:172 -- NodeUpdater: study-ray-head-bzqf5: Running kubectl -n ray exec -it study-ray-head-bzqf5 -- bash --login -c -i 'true && source ~/.bashrc && export OMP_NUM_THREADS=1 PYTHONWARNINGS=ignore && (mkdir -p ~)'
   [3/7] No worker file mounts to sync
   New status: setting-up
   [4/7] No initialization commands to run.
   [5/7] Initalizing command runner
   [6/7] No setup commands to run.
   [7/7] Starting the Ray runtime
-2022-05-06 18:54:43,981	INFO command_runner.py:172 -- NodeUpdater: study-cluster-ray-head-bzqf5: Running kubectl -n ray exec -it study-cluster-ray-head-bzqf5 -- bash --login -c -i 'true && source ~/.bashrc && export OMP_NUM_THREADS=1 PYTHONWARNINGS=ignore && (export RAY_OVERRIDE_RESOURCES='"'"'{"CPU":1,"GPU":0,"memory":375809638}'"'"';ray stop)'
+2022-05-06 18:54:43,981	INFO command_runner.py:172 -- NodeUpdater: study-ray-head-bzqf5: Running kubectl -n ray exec -it study-ray-head-bzqf5 -- bash --login -c -i 'true && source ~/.bashrc && export OMP_NUM_THREADS=1 PYTHONWARNINGS=ignore && (export RAY_OVERRIDE_RESOURCES='"'"'{"CPU":1,"GPU":0,"memory":375809638}'"'"';ray stop)'
 Did not find any active Ray processes.
-2022-05-06 18:54:45,818	INFO command_runner.py:172 -- NodeUpdater: study-cluster-ray-head-bzqf5: Running kubectl -n ray exec -it study-cluster-ray-head-bzqf5 -- bash --login -c -i 'true && source ~/.bashrc && export OMP_NUM_THREADS=1 PYTHONWARNINGS=ignore && (export RAY_OVERRIDE_RESOURCES='"'"'{"CPU":1,"GPU":0,"memory":375809638}'"'"';ulimit -n 65536; ray start --head --object-store-memory=134217728 --port=6379 --autoscaling-config=~/ray_bootstrap_config.yaml --dashboard-host 0.0.0.0)'
+2022-05-06 18:54:45,818	INFO command_runner.py:172 -- NodeUpdater: study-ray-head-bzqf5: Running kubectl -n ray exec -it study-ray-head-bzqf5 -- bash --login -c -i 'true && source ~/.bashrc && export OMP_NUM_THREADS=1 PYTHONWARNINGS=ignore && (export RAY_OVERRIDE_RESOURCES='"'"'{"CPU":1,"GPU":0,"memory":375809638}'"'"';ulimit -n 65536; ray start --head --object-store-memory=134217728 --port=6379 --autoscaling-config=~/ray_bootstrap_config.yaml --dashboard-host 0.0.0.0)'
 Local node IP: 10.244.1.5
 2022-05-06 14:54:50,566	INFO services.py:1412 -- View the Ray dashboard at http://10.244.1.5:8265
 
@@ -191,7 +191,7 @@ Useful commands
   Connect to a terminal on the cluster head:
     ray attach ray-cluster.yaml
   Get a remote shell to the cluster manually:
-    kubectl -n ray exec -it study-cluster-ray-head-bzqf5 -- bash
+    kubectl -n ray exec -it study-ray-head-bzqf5 -- bash
 ```
 
 Examine os pods existentes:
@@ -200,14 +200,14 @@ Examine os pods existentes:
 $ kubectl -n ray get pods
 
 NAME                             READY   STATUS    RESTARTS   AGE
-study-cluster-ray-head-rg2m8     1/1     Running   0          74s
-study-cluster-ray-worker-g2674   1/1     Running   0          51s
+study-ray-head-rg2m8     1/1     Running   0          74s
+study-ray-worker-g2674   1/1     Running   0          51s
 ```
 
 Para acessar o Ray através do service do Kubernetes, incluindo o dashboard, faça um port-forward:
 
 ```bash
-kubectl -n ray port-forward service/study-cluster-ray-head 8265 8000 10001
+kubectl -n ray port-forward service/study-ray-head 8265 8000 10001
 ```
 
 Há diferentes formas de executar código.
@@ -240,4 +240,12 @@ Ou executando na máquina local:
 
 ```bash
 RAY_ADDRESS="ray://127.0.0.1:10001" python run-client.py
+```
+
+## Removendo o cluster
+
+```bash
+ray down -y ray-cluster.yaml
+
+kind delete cluster
 ```
