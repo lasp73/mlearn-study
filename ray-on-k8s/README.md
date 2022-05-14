@@ -73,7 +73,7 @@ ray up -y --no-config-cache ray-cluster.yaml
 
 ```
 
-Tive um erro inicialmente mas usei `--object-store-memory=134217728` no comando
+Inicialmente, tive um erro relacionado ao Object Store, mas usei `--object-store-memory=134217728` no comando
 `ray start` de `ray-cluster.yaml`, alocando 128Mi para Object Store.
 
 ```bash
